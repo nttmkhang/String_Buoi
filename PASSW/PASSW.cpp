@@ -6,7 +6,6 @@ int DoDai(string);
 int KyTu(string);
 string Process(int&);
 
-
 int main()
 {
 	int n;
