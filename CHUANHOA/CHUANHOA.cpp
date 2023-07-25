@@ -3,34 +3,40 @@
 #include <sstream>
 using namespace std;
 
-void Nhap(string[], int&);
 string ChuanHoa(string&);
-string ChuanHoaadv(string&);
-string Process(string[], int);
 
 int main()
 {
-    string str;
-    int n;
-    cin >> n;
+    int T;
+    cin >> T;
     cin.ignore();
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < T; i++)
     {
+        string str;
         getline(cin, str);
-        cout << ChuanHoaadv(str) << endl;
+        cout << ChuanHoa(str) << endl;
     }
 	return 0;
 }
 
-void Nhap(string str[], int& n)
+
+string ChuanHoa(string& s)
 {
-    cin >> n;
-    cin.ignore();
-    for (int i = 0; i < n; i++)
-        getline(cin, str[i]);
+    string temp;    
+    stringstream stream(s);
+    string word;
+    stream >> word;
+    temp += word;
+    while (stream >> word)
+    {
+        temp += " ";
+        temp += word;
+    }
+    return temp;
 }
 
-string ChuanHoa(string& a)
+
+string ChuanHoa2(string& a)
 {
     stringstream stream;
     bool isSpace = false;
@@ -53,24 +59,4 @@ string ChuanHoa(string& a)
         }
     }
     return stream.str();
-}
-
-string Process(string str[], int n)
-{
-    stringstream stream;
-    for (int i = 0; i < n; i++)
-    {
-        stream << ChuanHoaadv(str[i]) << endl;
-    }
-    return stream.str();
-}
-
-string ChuanHoaadv(string& s)
-{
-    stringstream ss(s);
-    string temp = "", ans = "";
-    while (ss >> temp)
-        ans += temp + " ";
-    ans.pop_back();
-    return ans;
 }

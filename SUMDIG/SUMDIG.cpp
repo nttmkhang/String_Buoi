@@ -2,30 +2,34 @@
 #include<sstream>
 using namespace std;
 
-int TinhTong(string);
-string Process(int);
+int TinhTong(long long);
+string Process();
 
 int main()
 {
-	int s; cin >> s;
-	cout << Process(s);
+	cout << Process();
 	return 0;
 }
 
-int TinhTong(string n)
+int TinhTong(long long n)
 {
-	int ans = 0;
-	for (int i = 0; i < n.size(); i++)
-		ans += (n[i] - 48);
-	return ans;
+	int s = 0;
+	while (n)
+	{
+		s += n % 10;
+		n /= 10;
+	}
+	return s;
 }
 
-string Process(int s)
+string Process()
 {
 	stringstream stream;
-	for (int i = 0; i < s; i++)
+	int T;
+	cin >> T;
+	for (int i = 0; i < T; i++)
 	{
-		string n;
+		long long n;
 		cin >> n;
 		stream << TinhTong(n) << endl;
 	}

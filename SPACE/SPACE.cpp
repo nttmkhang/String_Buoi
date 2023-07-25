@@ -4,42 +4,51 @@
 
 using namespace std;
 
-void Nhap(string[], int&);
-int DemKhoangTrang(string);
-string XuatSoKhoangTrang(string[], int);
+int DemKhoangTrang1(string);
+int DemKhoangTrang2(string);
 
 int main()
 {
-	int n;
-	string a[100];
-	Nhap(a, n);
-	cout << XuatSoKhoangTrang(a, n);
+	int T;
+	cin >> T;
+	cin.ignore();
+	string s;
+	for (int i = 0; i < T; i++)
+	{
+		getline(cin, s);
+		cout << DemKhoangTrang2(s) << endl;
+	}
 	return 0;
 }
 
-void Nhap(string a[], int& n)
-{
-	cin >> n;
-	cin.ignore();
-	for (int i = 0; i < n; i++)
-		getline(cin, a[i]);
-}
-
-int DemKhoangTrang(string str)
+int DemKhoangTrang1(string s)
 {
 	int dem = 0;
-	for (int i = 0; i < str.size() - 1; i++)
-		if (str[i] == ' ' && str[i + 1] != ' ')
+	for (unsigned int i = 0; i < s.size() - 1; i++)
+		if (s[i] == ' ' && s[i + 1] != ' ')
 			dem++;
-	if (str[str.size() - 1] == ' ')
+	if (s[s.size() - 1] == ' ')
 		dem++;
 	return dem;
 }
 
-string XuatSoKhoangTrang(string a[], int n)
+int DemKhoangTrang2(string s)
 {
-	stringstream stream;
-	for (int i = 0; i < n; i++)
-		stream << DemKhoangTrang(a[i]) << endl;
-	return stream.str();
+	int dem = 0;
+	int n = s.size();
+	int i = 0;
+	while (i < n && s[i] == ' ')
+		i++;
+	if (i != 0)
+		dem++;
+	while (i < n)
+	{
+		while (i < n && s[i] != ' ')
+			i++;
+		if (i < n)
+			dem++;
+		while (i < n && s[i] == ' ')
+			i++;
+	}
+	return dem;
 }

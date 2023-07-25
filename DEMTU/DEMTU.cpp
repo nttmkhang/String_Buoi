@@ -5,21 +5,23 @@
 #include <math.h>
 using namespace std;
 
-int demTu(const string& str);
+int DemTu(const string& str);
 
-int main() {
+int main() 
+{
 	string str;
 	getline(cin, str);
-	cout << demTu(str);
+
+	cout << DemTu(str);
 	return 0;
 }
 
-int demTu(const string& str) {
-	istringstream input(str);
+int DemTu(const string& str) 
+{
+	stringstream input(str);
 	string word;
 	int dem = 0;
-	while (input >> word) {
+	while (input >> word)
 		dem++;
-	}
 	return dem;
 }

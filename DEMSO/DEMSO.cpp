@@ -1,35 +1,44 @@
 ﻿#include <iostream>
 #include <string>
+#include <cctype>
 #include <sstream>
 using namespace std;
 
-void Nhap(string&);
-string Process(string&);
+string Process();
+int DemNumber(string);
 
 int main()
 {
-	string a;
-	Nhap(a);
-
-	cout << Process(a);
+	cout << Process();
 	return 0;
 }
 
-void Nhap(string& a)
+int DemNumber(string s)
 {
-	getline(cin, a);
+	if (s.size() == 1)
+	{
+		if (isdigit(s[0]))
+			return 1;
+		return 0;
+	}
+
+	int dem = 0;
+	unsigned int n = s.size();
+	for (unsigned int i = 0; i <= n - 2; i++)
+		if (isdigit(s[i]))
+			if (isalpha(s[i + 1]))
+				dem++;
+	if (isdigit(s[n - 1]))
+		dem++;
+	return dem;
 }
 
-string Process(string& a)
+string Process()
 {
+	string s;
+	getline(cin, s);
+
 	stringstream stream;
-	int dem = 0;
-	for (int i = 0; i < a.size() - 1; i++)
-		if ((a[i] >= 48 && a[i] <= 57))
-			if ((a[i + 1] >= 65 && a[i + 1] <= 90) || (a[i + 1] >= 97 && a[i + 1] <= 122))
-				dem++;
-	if (a[a.size() - 1] >= 48 && a[a.size() - 1] <= 57)
-		dem++;
-	stream << dem;
+	stream << DemNumber(s);
 	return stream.str();
 }

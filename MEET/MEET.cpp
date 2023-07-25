@@ -3,45 +3,38 @@
 #include <sstream>
 using namespace std;
 
-void Nhap(string[], int&, char&);
-string Process(string[], int, char);
+string Process();
+bool ktThuoc(string, char);
 
 int main()
 {
-    string str[100];
-    int n;
-    char c;
-    Nhap(str, n, c);
-
-    cout << Process(str, n, c);
+    cout << Process();
     return 0;
 }
 
-void Nhap(string str[], int& n, char& c)
+bool ktThuoc(string s, char c)
 {
-    cin >> n;
-    cin >> c;
-    for (int i = 0; i < n; i++)
-    {
-        cin.ignore();
-        cin >> str[i];
-    }
+    for (unsigned int i = 0; i < s.size(); i++)
+        if (s[i] == c)
+            return true;
+    return false;
 }
 
-string Process(string str[], int n, char c)
+string Process()
 {
+    int n;
+    cin >> n;
+    char c;
+    cin >> c;
+    
     stringstream stream;
     for (int i = 0; i < n; i++)
     {
-        int flag = 0;
-        for (int j = 0; j < str[i].size(); j++)
-            if (str[i][j] == c)
-            {
-                flag = 1;
-                break;
-            }
-        if (flag == 0)
-            stream << str[i] << endl;
+        string s;
+        cin.ignore();
+        cin >> s;
+        if (!ktThuoc(s, c))
+            stream << s << endl;
     }
     return stream.str();
-} 
+}

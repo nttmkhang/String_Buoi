@@ -5,25 +5,20 @@ using namespace std;
 
 typedef string BigNum;
 
-string Process(string);
+int DemChuSo(string);
 
 int main()
 {
 	BigNum n;
 	cin >> n;
 	
-	cout << Process(n);
+	cout << DemChuSo(n);
 	return 0;
 }
 
-string Process(string str)
+int DemChuSo(string str)
 {
-	stringstream stream;
 	if (str[0] == '-')
-	{
-		stream << str.length() - 1;
-		return stream.str();
-	}
-	stream << str.length();
-	return stream.str();
+		return  str.length() - 1;
+	return str.length();
 }

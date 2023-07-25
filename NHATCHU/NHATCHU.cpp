@@ -18,8 +18,7 @@ string Process(string s)
 {
 	stringstream stream;
 	vector<int> KiTu(256, 0);
-	int n = s.size();
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < s.size(); i++)
 		if (KiTu[s[i]] == 0)
 		{
 			KiTu[s[i]]++;

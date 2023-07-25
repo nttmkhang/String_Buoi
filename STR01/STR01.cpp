@@ -3,31 +3,26 @@
 #include <sstream>
 using namespace std;
 
-void Nhap(string&);
-string Process(string&);
+string Process(const string&);
 
 int main()
 {
 	string a;
-	Nhap(a);
+	getline(cin, a);
 
 	cout << Process(a);
 	return 0;
 }
 
-void Nhap(string& a)
-{
-	getline(cin, a);
-}
-
-string Process(string& a)
+string Process(const string& s)
 {
 	stringstream stream;
-	for (int i = 0; i < a.size(); i++)
+	for (unsigned int i = 0; i < s.size(); i++)
 	{
-		if (a[i] >= 65 && a[i] <= 90)
-			a[i] += 32;
-		stream << a[i];
+		char x = s[i];
+		if (x >= 65 && x <= 90)
+			x += 32;
+		stream << x;
 	}
 	return stream.str();
 }

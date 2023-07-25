@@ -4,47 +4,39 @@
 
 using namespace std;
 
-void Nhap(string[], long long[], int&);
-bool KTDoiXung(string);
-string Process(string[], long long[], int);
+bool ktDoiXung(string);
+string Process();
 
 int main()
 {
-	int n;
-	string a[20];
-	long long k[20];
-	Nhap(a, k, n);
-	cout << Process(a, k, n);
+	cout << Process();
 	return 0;
 }
 
-void Nhap(string a[], long long k[], int& n)
+bool ktDoiXung(string s)
 {
-	cin >> n;
-	cin.ignore();
-	for (int i = 0; i < n; i++)
-	{
-		getline(cin, a[i]);
-		cin >> k[i];
-		cin.ignore();
-	}
-}
-
-bool KTDoiXung(string str)
-{
-	int n = str.size();
-	for (int i = 0; i < n / 2; i++)
-		if (str[i] != str[n - i - 1])
+	unsigned int n = s.size();
+	for (unsigned int i = 0; i < n / 2; i++)
+		if (s[i] != s[n - 1 - i])
 			return false;
 	return true;
 }
 
-string Process(string a[], long long k[], int n)
+string Process()
 {
+	unsigned int T;
+	cin >> T;
+
 	stringstream stream;
-	for (int i = 0; i < n; i++)
+	for (unsigned int i = 0; i < T; i++)
 	{
-		if (KTDoiXung(a[i]))
+		cin.ignore();
+		string s;
+		getline(cin, s);
+		long long k;
+		cin >> k;
+
+		if (ktDoiXung(s))
 			stream << "YES" << endl;
 		else
 			stream << "NO" << endl;

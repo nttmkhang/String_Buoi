@@ -5,37 +5,42 @@
 using namespace std;
 
 string process(string);
+int DemTu(string);
 
 int main()
 {
 	string s;
 	cin >> s;
+
 	cout << process(s);
 	return 0;
 }
 
-string process(string s)
+int DemTu(string s)
 {
-	stringstream stream;
-	set<string> se;
-	string temp;
-	int count = 0, n = s.size();
+	set<string> words;
+	string word="";
+	int n = s.size();
 	for (int i = 0; i < n; i++)
 	{
 		if (s[i] == '.')
 		{
-			if (temp != "")
+			if (word != "")
 			{
-				se.insert(temp);
-				temp = "";
+				words.insert(word);
+				word = "";
 			}
 		}
 		else
-			temp += s[i];
+			word += s[i];
 	}
-	if (temp != "")
-		se.insert(temp);
-	count = se.size();
-	stream << count;
+	if (word != "")
+		words.insert(word);
+	return words.size();
+}
+string process(string s)
+{
+	stringstream stream;
+	stream << DemTu(s);
 	return stream.str();
 }
