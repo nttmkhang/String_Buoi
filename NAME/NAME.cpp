@@ -2,43 +2,48 @@
 #include <sstream>
 using namespace std;
 
+string ChuanHoaTu(string);
 string ChuanHoa(string);
-string Process(int);
+string Process();
 
 int main()
 {
-	int n;
-	cin >> n;
-	cin.ignore();
-	cout << Process(n);
+	cout << Process();
 	return 0;
 }
 
 string ChuanHoa(string s)
 {
-	stringstream stream;
+	string temp = "";
 	stringstream ss(s);
-	string temp;
-	string ans = "";
-	while (ss >> temp)
+	string word;
+	while (ss >> word)
 	{
-		temp[0] = toupper(temp[0]);
-		int size = temp.size();
-		for (int i = 1; i < size; i++)
-			temp[i] = tolower(temp[i]);
-		ans += temp + " ";
+		word = ChuanHoaTu(word);
+		temp += word + " ";
 	}
-	ans.pop_back();
-	stream << ans;
-	return stream.str();
+	temp.pop_back();
+	return temp;
 }
 
-string Process(int n)
+string ChuanHoaTu(string word)
+{
+	word[0] = toupper(word[0]);
+	unsigned int size = word.size();
+	for (unsigned int i = 1; i < size; i++)
+		word[i] = tolower(word[i]);
+	return word;
+}
+
+string Process()
 {
 	stringstream stream;
-	string x;
+	int n;
+	cin >> n;
+	cin.ignore();
 	for (int i = 0; i < n; i++)
 	{
+		string x;
 		getline(cin, x);
 		stream << ChuanHoa(x) << endl;
 	}

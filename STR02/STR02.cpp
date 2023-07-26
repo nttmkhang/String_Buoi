@@ -3,58 +3,44 @@
 #include <sstream>
 
 using namespace std;
-
-void Nhap(string[], int&);
 string ChuanHoa(string);
-string process(string[], int);
 
 int main()
 {
-	int n;
-	string a[100];
-	Nhap(a, n);
-	cout << process(a, n);
+	int T;
+	cin >> T;
+	cin.ignore();
+	string s;
+	for (int i = 0; i < T; i++)
+	{
+		getline(cin, s);
+		cout << ChuanHoa(s) << endl;
+	}
 	return 0;
 }
 
-void Nhap(string a[], int& n)
-{
-	cin >> n;
-	cin.ignore();
-	for (int i = 0; i < n; i++)
-	{
-		getline(cin, a[i]);
-	}
-}
-
-string ChuanHoa(string str)
+string ChuanHoa(string s)
 {
 	stringstream stream;
-	if (str[0] > 90)
-		str[0] -= 32;
-	int n = str.size();
+	int n = s.size();
+
+	if (s[0] >= 97 && s[0]<=122)
+		s[0] -= 32;
 	for (int i = 1; i < n; i++)
 	{
-		if (str[i] == ' ')
+		if (s[i] == ' ')
 			continue;
-		if (str[i] < 'A' || (str[i] > 'Z' && str[i] < 'a') || str[i] > 'z')
+		if (s[i] < 'A')
 			continue;
-		if (str[i - 1] == ' ' && str[i] > 90)
-			str[i] -= 32;
-		else if (str[i - 1] != ' ' && str[i] <= 90)
-			str[i] += 32;
+		if (s[i] > 'Z' && s[i] < 'a')
+			continue;
+		if (s[i] > 'z')
+			continue;
+		if (s[i - 1] == ' ' && s[i] >= 97 && s[i] <= 122)
+			s[i] -= 32;
+		else if (s[i - 1] != ' ' && s[i] >= 65 && s[i] <= 90)
+			s[i] += 32;
 	}
-	stream << str;
-	return stream.str();
-}
-
-string process(string a[], int n)
-{
-	stringstream stream;
-	for (int i = 0; i < n; i++)
-	{
-		stream << ChuanHoa(a[i]);
-		stream << endl;
-	}
+	stream << s;
 	return stream.str();
 }
