@@ -6,38 +6,43 @@
 using namespace std;
 typedef string BigNum;
 
-void Nhap(vector<BigNum>& vec, int n);
+void Nhap(vector<BigNum>& vec);
 string Process(const vector<BigNum>& vec);
 
-int main() {
-	int n = 0;
-	cin >> n;
+int main() 
+{
+	
 	vector<BigNum> vec;
-	Nhap(vec, n);
+	Nhap(vec);
+
 	cout << Process(vec);
 	return 0;
 }
 
-string Process(const vector<BigNum>& vec) {
-	ostringstream output;
+string Process(const vector<BigNum>& vec)
+{
+	stringstream stream;
+
 	int demAm = 0;
 	int demDuong = 0;
-	for (BigNum val : vec) {
-		if (val[0] == '-') {
+	for (BigNum val : vec) 
+		if (val[0] == '-') 
 			++demAm;
-		}
-		else if (val[0] != '0') {
+		else if (val[0] != '0') 
 			++demDuong;
-		}
-	}
-	output << demAm << " " << demDuong;
-	return output.str();
+
+	stream << demAm << " " << demDuong;
+	return stream.str();
 }
 
-void Nhap(vector<BigNum>& vec, int n) {
-	for (int i = 0; i < n; ++i) {
+void Nhap(vector<BigNum>& v) 
+{
+	int n = 0;
+	cin >> n;
+	for (int i = 0; i < n; ++i) 
+	{
 		BigNum val;
 		cin >> val;
-		vec.push_back(val);
+		v.push_back(val);
 	}
 }

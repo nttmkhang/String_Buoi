@@ -22,8 +22,7 @@ int DoDai(string s)
 int KyTu(string s)
 {
 	int flag1 = 0, flag2 = 0, flag3 = 0;
-	int n = s.size();
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < s.size(); i++)
 	{
 		if (s[i] >= 'A' && s[i] <= 'Z')
 			flag1 = 1;
@@ -49,7 +48,7 @@ string Process(int &n)
 	{
 		cin >> str;
 		int kq = DoDai(str) + KyTu(str);
-		stream << kq << endl;
+		stream << kq << " ";
 	}
 	return stream.str();
 }

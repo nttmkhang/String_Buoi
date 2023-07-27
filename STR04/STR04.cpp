@@ -1,53 +1,43 @@
-﻿#include <iostream>
-#include <string>
-#include <sstream>
+﻿#include<iostream>
+#include<string>
+#include<map>
+#include<set>
+#include<sstream>
 
 using namespace std;
 
-void Nhap(string&);
-bool KTNguyenTo(int);
-string Process(string);
+void TanSuat(string);
 
 int main()
 {
-	string a;
-	Nhap(a);
-	cout << Process(a);
+	string s;
+	getline(cin, s);
+	TanSuat(s);
 	return 0;
 }
 
-void Nhap(string& a)
+void TanSuat(string s)
 {
-	getline(cin, a);
-}
-
-bool KTNguyenTo(int n)
-{
-	if (n <= 1)
-		return false;
-	if (n == 2)
-		return true;
-	if (n == 3)
-		return true;
-	if (n % 2 == 0)
-		return false;
-	if (n % 3 == 0)
-		return false;
-	for (long long i = 5; i * i <= n; i += 6)
-		if ((n % i == 0) || (n % (i + 2) == 0))
-			return false;
-	return true;
-}
-
-string Process(string a)
-{
-	stringstream stream;
-	int n = a.size();
+	set<char> seChu;
+	set<char> seSo;
+	map<char, int> TanSuat;
+	int n = s.size();
 	for (int i = 0; i < n; i++)
 	{
-		if (KTNguyenTo(i))
-			a[i] = '*';
+		if (isdigit(s[i]))
+		{
+			TanSuat[s[i]]++;
+			seSo.insert(s[i]);
+		}
+		if (isalpha(s[i]))
+		{
+			char temp = tolower(s[i]);
+			TanSuat[temp]++;
+			seChu.insert(temp);
+		}
 	}
-	stream << a;
-	return stream.str();
+	for (char x : seSo)
+		cout << x << " " << TanSuat[x] << endl;
+	for (char x : seChu)
+		cout << x << " " << TanSuat[x] << endl;
 }

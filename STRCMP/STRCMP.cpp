@@ -8,32 +8,32 @@ using namespace std;
 string makeString(int chuSo, int tanSuat);
 string Process(int num1, int num2);
 
-int main() {
-	int num1 = 0;
-	int num2 = 0;
+int main() 
+{
+	int num1;
+	int num2;
 	cin >> num1 >> num2;
 	cout << Process(num1, num2);
 	return 0;
 }
 
-string makeString(int chuSo, int tanSuat) {
-	ostringstream ret;
-	for (int i = 0; i < tanSuat; ++i) {
-		ret << chuSo;
-	}
-	return ret.str();
+string makeString(int chuSo, int tanSuat) 
+{
+	stringstream stream;
+	for (int i = 0; i < tanSuat; ++i) 
+		stream << chuSo;
+	return stream.str();
 }
 
-string Process(int num1, int num2) {
-	ostringstream output;
+string Process(int num1, int num2) 
+{
+	stringstream stream;
 	string s1 = makeString(num1, num2);
 	string s2 = makeString(num2, num1);
-	if (s1 < s2) {
-		output << s1;
-	}
-	else {
-		output << s2;
-	}
-	return output.str();
+	if (s1 < s2) 
+		stream << s1;
+	else 
+		stream << s2;
+	return stream.str();
 }
 

@@ -4,13 +4,12 @@
 using namespace std;
 
 string DaoChuoi(string);
-string Process(string);
 
 int main()
 {
 	string s;
 	cin >> s;
-	cout << Process(s);
+	cout << DaoChuoi(s);
 	return 0;
 }
 
@@ -19,15 +18,8 @@ string DaoChuoi(string s)
 	int n = s.size();
 	while (s[n - 1] == '0')
 		n--;
-	string ans = "";
+	string temp = "";
 	for (int i = n - 1; i >= 0; i--)
-		ans += s[i];
-	return ans;
-}
-
-string Process(string s)
-{
-	stringstream stream;
-	stream << DaoChuoi(s);
-	return stream.str();
+		temp += s[i];
+	return temp;
 }
