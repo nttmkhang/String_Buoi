@@ -6,7 +6,7 @@ def luyencode(s, n):
         if s[i] == 'l':
             lc = 0
             for j in range(0, size):
-                if s[i + j] != temp[j]:
+                if i + j >= n or s[i + j] != temp[j]:
                     lc = 1
                     break
             if lc == 0:
