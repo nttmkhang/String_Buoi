@@ -36,13 +36,12 @@ int KiemTra(string a, string b)
 
 	int dem = 0;
 	int j = 0;
-	for (int k = 0; k < n; k++) {
-		if (j < m && b[k] == a[j]) {
+	for (int k = 0; k < n; k++)
+	{
+		if (j < m && b[k] == a[j])
 			j++;
-		}
-		else {
+		else
 			dem++;
-		}
 	}
 	if (j == m)
 		return dem;
