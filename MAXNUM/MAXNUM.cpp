@@ -41,7 +41,7 @@ string SoSanh(string a, string b)
 			return bnew;
 	}
 	string lc = anew;
-	for (int i = 0; i < sizea; i--)
+	for (int i = 0; i < sizea; i++)
 		if (anew[i] != bnew[i])
 		{
 			if (anew[i] > bnew[i])
