@@ -16,34 +16,35 @@ int main()
     return 0;
 }
 
-bool KiemTra(const unordered_map<char, int>& TanSuatChuoi, const string& code)
-{
-    unordered_map<char, int> TanSuatCode;
-    for (char c : code)
-        TanSuatCode[c]++;
-
-    for (const auto& pair : TanSuatCode)
-        if (TanSuatChuoi.find(pair.first) == TanSuatChuoi.end() || TanSuatChuoi.at(pair.first) < pair.second)
-            return false;
-
-    return true;
-}
-
-string Process(const string& str)
+string Process(const string& s)
 {
     stringstream stream;
     unordered_map<char, int> TanSuatChuoi;
-    for (char c : str)
+    for (char c : s)
         TanSuatChuoi[c]++;
 
     string code[10] = { "ZERO", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE" };
 
     for (const string& temp : code)
-        if (KiemTra(TanSuatChuoi, temp))
+    {
+        unordered_map<char, int> TanSuatCode;
+        for (char c : temp)
+            TanSuatCode[c]++;
+
+        int flag = 1;
+        for (const auto& pair : TanSuatCode)
+            if (TanSuatChuoi.find(pair.first) == TanSuatChuoi.end() || TanSuatChuoi.at(pair.first) < pair.second)
+            {
+                flag = 0;
+                break;
+            }
+
+        if(flag==1)
         {
             stream << temp;
             return stream.str();
         }
+    }
 
     stream << "CHIA BUON, PHAI VE ROI, HEN NAM SAU NHE!!";
     return stream.str();
